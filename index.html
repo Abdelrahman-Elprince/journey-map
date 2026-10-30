@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Long Way Round · Abdelrahman</title>
 <meta name="description" content="A short map of how I got from a Java project I could not start to a chartering desk." />
+<script>document.documentElement.classList.add("js");</script>
 <style>
   :root {
     --ink: #0c1420;
@@ -161,7 +162,8 @@
     transform: scale(1.15);
   }
 
-  .card { opacity: 0; transform: translateY(26px); transition: opacity 0.85s ease, transform 0.85s cubic-bezier(.2,.7,.2,1); }
+  .card { transition: opacity 0.85s ease, transform 0.85s cubic-bezier(.2,.7,.2,1); }
+  .js .card { opacity: 0; transform: translateY(26px); }
   .stop.on .card { opacity: 1; transform: none; }
   .stop .year {
     display: block;
@@ -200,10 +202,9 @@
     font-family: Georgia, "Times New Roman", serif;
     font-size: clamp(1.35rem, 3.4vw, 2.1rem);
     line-height: 1.45;
-    opacity: 0;
-    transform: translateY(20px);
     transition: opacity 1.2s ease, transform 1.2s ease;
   }
+  .js .end blockquote { opacity: 0; transform: translateY(20px); }
   .end.on blockquote { opacity: 1; transform: none; }
   .end blockquote em { color: var(--brass); font-style: italic; }
   .sign {
@@ -212,9 +213,9 @@
     letter-spacing: 0.26em;
     text-transform: uppercase;
     color: var(--brass-soft);
-    opacity: 0;
     transition: opacity 1.4s ease 0.5s;
   }
+  .js .sign { opacity: 0; }
   .end.on .sign { opacity: 1; }
 
   @media (prefers-reduced-motion: reduce) {
@@ -370,7 +371,10 @@
     }
   }, { passive: true });
   window.addEventListener('resize', onScroll);
+  window.addEventListener('load', onScroll);
   onScroll();
+  setTimeout(onScroll, 400);
+  setTimeout(onScroll, 1500);
 })();
 </script>
 </body>
