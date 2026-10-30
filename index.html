@@ -5,222 +5,259 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Long Way Round · Abdelrahman</title>
 <meta name="description" content="A short map of how I got from a Java project I could not start to a chartering desk." />
+<meta property="og:title" content="The Long Way Round" />
+<meta property="og:description" content="A short map of how I got from a Java project I could not start to a chartering desk." />
+<meta property="og:type" content="website" />
 <script>document.documentElement.classList.add("js");</script>
 <style>
   :root {
-    --ink: #0c1420;
-    --ink-2: #101b2a;
-    --paper: #f2ede3;
-    --muted: #8d9aa8;
-    --brass: #c9a227;
-    --brass-soft: #8a6f1e;
-    --line: rgba(201, 162, 39, 0.28);
+    --cream: #fdf6ec;
+    --paper: #ffffff;
+    --ink: #17222f;
+    --ink-soft: #46566a;
+    --orange: #e0571f;
+    --amber: #f2a03d;
+    --teal: #16697a;
+    --line: rgba(23, 34, 47, 0.14);
+    --shadow: 0 18px 40px -24px rgba(23, 34, 47, 0.55);
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; overflow-x: clip; }
   body {
     margin: 0;
-    background: var(--ink);
-    color: var(--paper);
-    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
     font-size: 17px;
-    line-height: 1.65;
+    line-height: 1.62;
     -webkit-font-smoothing: antialiased;
   }
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(70rem 40rem at 15% -10%, rgba(201,162,39,0.10), transparent 60%),
-      radial-gradient(50rem 30rem at 110% 20%, rgba(60,110,160,0.14), transparent 65%);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .wrap { position: relative; z-index: 1; }
+  .wrap { position: relative; z-index: 1; overflow: clip; }
 
   /* ---------- hero ---------- */
   .hero {
-    min-height: 100svh;
+    position: relative;
+    min-height: 96svh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 8vh 6vw;
-    max-width: 74rem;
-    margin: 0 auto;
+    padding: 10vh 6vw 12vh;
+    background:
+      radial-gradient(48rem 30rem at 8% -10%, rgba(242, 160, 61, 0.55), transparent 62%),
+      radial-gradient(40rem 26rem at 100% 8%, rgba(22, 105, 122, 0.24), transparent 66%),
+      linear-gradient(180deg, #fff7ea 0%, var(--cream) 68%);
+    overflow: hidden;
   }
+  .hero-inner { max-width: 68rem; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
   .kicker {
-    font-size: 0.72rem;
-    letter-spacing: 0.28em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--brass);
-    margin: 0 0 1.4rem;
+    color: var(--orange);
+    margin: 0 0 1.5rem;
   }
+  .kicker::before { content: ""; width: 2.2rem; height: 1px; background: currentColor; }
   h1 {
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
     font-weight: 400;
-    font-size: clamp(2.4rem, 7vw, 5rem);
-    line-height: 1.03;
-    margin: 0 0 1.6rem;
-    letter-spacing: -0.02em;
+    font-size: clamp(2.6rem, 8vw, 5.6rem);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    margin: 0 0 1.5rem;
   }
-  h1 em { font-style: italic; color: var(--brass); }
-  .lede {
-    max-width: 34rem;
-    color: var(--muted);
-    font-size: 1.02rem;
+  h1 em { font-style: italic; color: var(--orange); position: relative; white-space: nowrap; }
+  h1 em::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 0.02em;
+    height: 0.09em;
+    background: linear-gradient(90deg, rgba(242,160,61,0.9), rgba(224,87,31,0.15));
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: rule-in 1.1s 0.5s cubic-bezier(.2,.8,.2,1) forwards;
   }
+  @keyframes rule-in { to { transform: scaleX(1); } }
+  .lede { max-width: 32rem; color: var(--ink-soft); font-size: 1.06rem; margin: 0; }
   .scroll-hint {
-    margin-top: 3.5rem;
+    margin-top: 3.2rem;
     display: flex;
     align-items: center;
     gap: 0.9rem;
-    color: var(--brass-soft);
-    font-size: 0.74rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-  }
-  .scroll-hint span.rail {
-    display: block;
-    width: 3.2rem;
-    height: 1px;
-    background: var(--line);
-    position: relative;
-    overflow: hidden;
-  }
-  .scroll-hint span.rail::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--brass);
-    transform: translateX(-100%);
-    animation: sweep 2.6s ease-in-out infinite;
-  }
-  @keyframes sweep {
-    0% { transform: translateX(-100%); }
-    55%, 100% { transform: translateX(100%); }
-  }
-
-  /* ---------- timeline ---------- */
-  .track {
-    position: relative;
-    max-width: 62rem;
-    margin: 0 auto;
-    padding: 4rem 6vw 8rem;
-  }
-  .spine {
-    position: absolute;
-    left: calc(6vw + 0.55rem);
-    top: 4rem;
-    bottom: 8rem;
-    width: 1px;
-    background: var(--line);
-  }
-  .spine-fill {
-    position: absolute;
-    left: 0; top: 0;
-    width: 100%;
-    height: 0%;
-    background: linear-gradient(180deg, var(--brass), rgba(201,162,39,0.25));
-    box-shadow: 0 0 12px rgba(201,162,39,0.45);
-  }
-  @media (min-width: 52rem) {
-    .spine { left: 50%; }
-    .stop { grid-template-columns: 1fr 1fr; }
-  }
-
-  .stop {
-    position: relative;
-    display: grid;
-    gap: 1rem;
-    padding: 0 0 0 3.2rem;
-    margin: 0 0 5.5rem;
-  }
-  @media (min-width: 52rem) {
-    .stop { padding: 0; column-gap: 5rem; }
-    .stop:nth-child(odd) .card { grid-column: 2; text-align: left; }
-    .stop:nth-child(even) .card { grid-column: 1; text-align: right; }
-  }
-
-  .dot {
-    position: absolute;
-    left: 0;
-    top: 0.45rem;
-    width: 0.72rem;
-    height: 0.72rem;
-    border-radius: 50%;
-    background: var(--ink);
-    border: 1px solid var(--brass-soft);
-    transition: background 0.6s ease, box-shadow 0.6s ease, transform 0.6s ease;
-  }
-  @media (min-width: 52rem) {
-    .dot { left: calc(50% - 0.36rem); }
-  }
-  .stop.on .dot {
-    background: var(--brass);
-    box-shadow: 0 0 0 5px rgba(201,162,39,0.14), 0 0 18px rgba(201,162,39,0.55);
-    transform: scale(1.15);
-  }
-
-  .card { transition: opacity 0.85s ease, transform 0.85s cubic-bezier(.2,.7,.2,1); }
-  .js .card { opacity: 0; transform: translateY(26px); }
-  .stop.on .card { opacity: 1; transform: none; }
-  .stop .year {
-    display: block;
-    font-size: 0.7rem;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--brass);
-    margin-bottom: 0.55rem;
-  }
-  .stop h2 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-weight: 400;
-    font-size: clamp(1.4rem, 3.2vw, 2.05rem);
-    margin: 0 0 0.6rem;
-    letter-spacing: -0.01em;
-  }
-  .stop p { margin: 0; color: var(--muted); max-width: 30rem; }
-  @media (min-width: 52rem) {
-    .stop:nth-child(even) p { margin-left: auto; }
-  }
-
-  /* ---------- closing ---------- */
-  .end {
-    min-height: 88svh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 6rem 6vw;
-    border-top: 1px solid var(--line);
-  }
-  .end blockquote {
-    margin: 0;
-    max-width: 44rem;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(1.35rem, 3.4vw, 2.1rem);
-    line-height: 1.45;
-    transition: opacity 1.2s ease, transform 1.2s ease;
-  }
-  .js .end blockquote { opacity: 0; transform: translateY(20px); }
-  .end.on blockquote { opacity: 1; transform: none; }
-  .end blockquote em { color: var(--brass); font-style: italic; }
-  .sign {
-    margin-top: 3rem;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     letter-spacing: 0.26em;
     text-transform: uppercase;
-    color: var(--brass-soft);
-    transition: opacity 1.4s ease 0.5s;
+    color: var(--ink-soft);
   }
-  .js .sign { opacity: 0; }
-  .end.on .sign { opacity: 1; }
+  .scroll-hint .arrow {
+    width: 1.9rem; height: 1.9rem;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    color: var(--orange);
+    animation: bob 2.4s ease-in-out infinite;
+  }
+  @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+
+  .hero-art {
+    position: absolute;
+    right: -8%; bottom: -6%;
+    width: min(46rem, 92vw);
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .hero-art path, .hero-art circle {
+    stroke: rgba(224, 87, 31, 0.38);
+    fill: none;
+    stroke-width: 1.2;
+    stroke-dasharray: 5 7;
+  }
+  .hero-art .solid { stroke-dasharray: none; stroke: rgba(22, 105, 122, 0.3); }
+
+  /* ---------- route ---------- */
+  main.track { position: relative; max-width: 64rem; margin: 0 auto; padding: 2rem 6vw 6rem; }
+  .rail {
+    position: absolute;
+    left: calc(6vw + 0.6rem);
+    top: 0; bottom: 4rem;
+    width: 2px;
+    background-image: linear-gradient(180deg, var(--line) 55%, transparent 0);
+    background-size: 2px 14px;
+    background-repeat: repeat-y;
+  }
+  .rail-fill {
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%; height: 0%;
+    background: linear-gradient(180deg, var(--amber), var(--orange));
+    border-radius: 2px;
+  }
+  .rail-dot {
+    position: absolute;
+    left: 50%; top: 0%;
+    width: 0.85rem; height: 0.85rem;
+    margin-left: -0.42rem; margin-top: -0.42rem;
+    border-radius: 50%;
+    background: var(--orange);
+    box-shadow: 0 0 0 5px rgba(224, 87, 31, 0.16);
+  }
+  @media (min-width: 56rem) { .rail { left: 50%; } }
+
+  .stop { position: relative; padding-left: 3.4rem; margin-bottom: 5rem; }
+  .num {
+    position: absolute; left: 0; top: 0.1rem;
+    width: 1.6rem; height: 1.6rem;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    display: grid; place-items: center;
+    font-size: 0.68rem; font-weight: 600;
+    color: var(--ink-soft);
+    z-index: 2;
+    transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease, transform 0.5s ease;
+  }
+  .stop.on .num { background: var(--orange); border-color: var(--orange); color: #fff; transform: scale(1.08); }
+
+  .card {
+    background: var(--paper);
+    border: 1px solid rgba(23, 34, 47, 0.07);
+    border-radius: 14px;
+    padding: 1.5rem 1.6rem 1.6rem;
+    box-shadow: var(--shadow);
+    transition: opacity 0.75s ease, transform 0.75s cubic-bezier(.2,.8,.2,1), box-shadow 0.4s ease;
+  }
+  .js .card { opacity: 0; transform: translateY(28px); }
+  .stop.on .card { opacity: 1; transform: none; }
+  .card:hover { box-shadow: 0 26px 50px -28px rgba(23, 34, 47, 0.6); }
+
+  .tag {
+    display: inline-block;
+    font-size: 0.66rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.5rem;
+  }
+  .card h2 {
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-weight: 400;
+    font-size: clamp(1.35rem, 3vw, 1.85rem);
+    line-height: 1.15;
+    margin: 0 0 0.55rem;
+    letter-spacing: -0.01em;
+  }
+  .card p { margin: 0; color: var(--ink-soft); }
+
+  @media (min-width: 56rem) {
+    .stop { padding-left: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 6rem; }
+    .stop:nth-of-type(odd) .card { grid-column: 2; }
+    .stop:nth-of-type(even) .card { grid-column: 1; }
+    .stop .num { left: calc(50% - 0.8rem); }
+  }
+
+  /* ---------- arrival ---------- */
+  .arrival {
+    position: relative;
+    background: linear-gradient(165deg, #12212e 0%, #1b3346 62%, #28505c 100%);
+    color: #fdf6ec;
+    padding: 7rem 6vw 6rem;
+    overflow: hidden;
+  }
+  .arrival::before {
+    content: "";
+    position: absolute;
+    inset: -30% -10% auto -10%;
+    height: 60%;
+    background: radial-gradient(closest-side, rgba(242, 160, 61, 0.35), transparent 70%);
+    pointer-events: none;
+  }
+  .arrival-inner { position: relative; z-index: 2; max-width: 46rem; margin: 0 auto; text-align: center; }
+  .arrival .sun {
+    width: clamp(5rem, 12vw, 8rem);
+    height: clamp(5rem, 12vw, 8rem);
+    margin: 0 auto 2.4rem;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, #ffd08a, var(--amber) 55%, var(--orange) 100%);
+    box-shadow: 0 0 60px rgba(242, 160, 61, 0.45);
+    animation: rise 1.6s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes rise { from { transform: translateY(24px) scale(0.9); opacity: 0; } to { transform: none; opacity: 1; } }
+  .arrival blockquote {
+    margin: 0;
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-size: clamp(1.3rem, 3.1vw, 1.95rem);
+    line-height: 1.5;
+    transition: opacity 1.1s ease, transform 1.1s ease;
+  }
+  .js .arrival blockquote { opacity: 0; transform: translateY(18px); }
+  .arrival.on blockquote { opacity: 1; transform: none; }
+  .arrival blockquote strong { color: #ffc481; font-weight: 400; font-style: italic; }
+  .arrival .sign {
+    margin-top: 2.6rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(253, 246, 236, 0.6);
+    transition: opacity 1.2s ease 0.4s;
+  }
+  .js .arrival .sign { opacity: 0; }
+  .arrival.on .sign { opacity: 1; }
+  .horizon { display: block; width: 100%; max-width: 34rem; margin: 3rem auto 0; opacity: 0.85; }
+  .horizon path, .horizon line { stroke: rgba(253, 246, 236, 0.4); fill: none; stroke-width: 1.1; }
+  .horizon .hull { fill: rgba(253, 246, 236, 0.14); stroke: rgba(253, 246, 236, 0.5); }
+  .horizon .wave { stroke-dasharray: 4 6; }
 
   @media (prefers-reduced-motion: reduce) {
-    .card, .end blockquote, .sign { opacity: 1 !important; transform: none !important; transition: none !important; }
-    .scroll-hint span.rail::after { animation: none; }
+    .js .card, .js .arrival blockquote, .js .arrival .sign { opacity: 1 !important; transform: none !important; }
+    .card, .arrival blockquote, .arrival .sign { transition: none !important; }
+    .arrival .sun { animation: none; }
+    h1 em::after { animation: none; transform: scaleX(1); }
+    .scroll-hint .arrow { animation: none; }
     html { scroll-behavior: auto; }
   }
 </style>
@@ -229,93 +266,112 @@
 <div class="wrap">
 
   <header class="hero">
-    <p class="kicker">A short map · 2022 → now</p>
-    <h1>The long way<br><em>round.</em></h1>
-    <p class="lede">I did not plan my way into shipping. I spent a few years trying to become useful, and then a door opened earlier than I expected. This is the order it happened in.</p>
-    <div class="scroll-hint"><span class="rail"></span> Scroll</div>
+    <svg class="hero-art" viewBox="0 0 600 400" aria-hidden="true">
+      <path d="M20 340 C 120 300, 140 210, 240 200 S 380 250, 470 150 S 560 60, 580 40" />
+      <path class="solid" d="M20 360 C 150 330, 210 300, 300 300 S 460 320, 580 240" />
+      <circle cx="20" cy="340" r="5" />
+      <circle cx="580" cy="40" r="5" />
+    </svg>
+    <div class="hero-inner">
+      <p class="kicker">A short map · 2022 → now</p>
+      <h1>The long way<br><em>round.</em></h1>
+      <p class="lede">I did not plan my way into shipping. I spent a few years trying to become useful, and then a door opened earlier than I expected. This is the order it happened in.</p>
+      <div class="scroll-hint"><span class="arrow">↓</span> Scroll</div>
+    </div>
   </header>
 
   <main class="track">
-    <div class="spine"><div class="spine-fill" id="fill"></div></div>
+    <div class="rail"><div class="rail-fill" id="fill"></div><div class="rail-dot" id="dot"></div></div>
 
     <article class="stop">
-      <span class="dot"></span>
+      <span class="num">1</span>
       <div class="card">
-        <span class="year">Late 2022</span>
+        <span class="tag">Late 2022</span>
         <h2>The first prompt</h2>
-        <p>A database system in Java, five of us, and a project we could not start. The chatbot was wrong most of the time and it still got us through.</p>
+        <p>It was bad. It was still better than nothing. That gap, between what a tool cannot do and what it almost can, is the thing I have been watching close ever since.</p>
       </div>
     </article>
 
     <article class="stop">
-      <span class="dot"></span>
+      <span class="num">2</span>
       <div class="card">
-        <span class="year">The choice</span>
+        <span class="tag">The choice</span>
         <h2>Business informatics</h2>
-        <p>I liked programming and I was afraid of being stuck in one field, so I picked a degree that made me study economics and business next to computer science.</p>
+        <p>Everyone around me picked a side, code or commerce. I picked the seam between them, because a narrow shelf scared me more than hard work did.</p>
       </div>
     </article>
 
     <article class="stop">
-      <span class="dot"></span>
+      <span class="num">3</span>
       <div class="card">
-        <span class="year">The first door</span>
+        <span class="tag">The first door</span>
         <h2>Doha</h2>
-        <p>An internship was my way into the maritime industry. It later brought me to Shanghai, which is where the rest of this map happens.</p>
+        <p>An internship in an industry I had never touched, doing work nobody would call glamorous. It is the only reason I was in Shanghai a year later.</p>
       </div>
     </article>
 
     <article class="stop">
-      <span class="dot"></span>
+      <span class="num">4</span>
       <div class="card">
-        <span class="year">A year and a half · two countries</span>
+        <span class="tag">A year and a half · two countries</span>
         <h2>Bureau Veritas</h2>
-        <p>Business analytics, market reporting and fleet analysis. What I learned is that shipping runs on documents, on data nobody has cleaned, and on people willing to sign their name to a judgement.</p>
+        <p>Market reports nobody read closely and fleet data nobody had cleaned. The lesson took a while to land: in shipping the paperwork is the business, not the paperwork about the business.</p>
       </div>
     </article>
 
     <article class="stop">
-      <span class="dot"></span>
+      <span class="num">5</span>
       <div class="card">
-        <span class="year">The language</span>
-        <h2>Chinese, in a year and a half</h2>
-        <p>I passed an exam that some students fail after three years of study. It is the asset in this whole map that is hardest to copy.</p>
+        <span class="tag">Eighteen months</span>
+        <h2>Chinese</h2>
+        <p>An exam some students fail after three years. Three languages now, one of them learned against a clock I set for myself.</p>
       </div>
     </article>
 
     <article class="stop">
-      <span class="dot"></span>
+      <span class="num">6</span>
       <div class="card">
-        <span class="year">The thing I built</span>
+        <span class="tag">The thing I built</span>
         <h2>Orange Chinese</h2>
-        <p>A study app my friends needed because they were juggling five apps for one lesson. No sales yet. Five months of ten hour days taught me the difference between an idea and a product.</p>
+        <p>My friends stopped switching between five apps. I still have not sold a single subscription. Building it was the easy half, and I only learned that by finishing it.</p>
       </div>
     </article>
 
     <article class="stop">
-      <span class="dot"></span>
+      <span class="num">7</span>
       <div class="card">
-        <span class="year">Now</span>
+        <span class="tag">Now</span>
         <h2>Fudan</h2>
-        <p>Master's in International Business at the School of Economics. The credential that opens the first door properly.</p>
+        <p>International Business, School of Economics. A credential buys a seat at the table. It does not buy the conversation, which is the part I am working on.</p>
       </div>
     </article>
 
     <article class="stop">
-      <span class="dot"></span>
+      <span class="num">8</span>
       <div class="card">
-        <span class="year">Next</span>
+        <span class="tag">Next</span>
         <h2>The chartering desk</h2>
-        <p>The commercial side, where vessels are fixed and negotiated. A model can price a voyage faster than a junior broker. It cannot sit across the table and hold a number.</p>
+        <p>Where a voyage becomes a price and a price becomes a promise. The model can do the arithmetic. I want to be the one who can be held to the promise.</p>
       </div>
     </article>
   </main>
 
-  <section class="end" id="end">
-    <blockquote>
-      In all honesty, even though we try our best to think that we are in full control of our lives, reality and destiny will always win. I will try my best with what I have been given, and <em>the outcome is something that is left to the universe to decide.</em>
-    </blockquote>
-    <p class="sign">Abdelrahman · 景仁 · 2026</p>
+  <section class="arrival" id="arrival">
+    <div class="arrival-inner">
+      <div class="sun" aria-hidden="true"></div>
+      <blockquote>
+        In all honesty, we like to believe we are steering our own lives. Most of the time we are only choosing how we meet what arrives. I will do my best with what I have been given, and <strong>let the universe decide the rest.</strong>
+      </blockquote>
+      <svg class="horizon" viewBox="0 0 400 90" aria-hidden="true">
+        <line x1="0" y1="62" x2="400" y2="62" />
+        <path class="hull" d="M120 62 L132 78 L268 78 L280 62 Z" />
+        <path d="M196 62 L196 26 L232 62" />
+        <path d="M196 30 L172 62" />
+        <path class="wave" d="M40 84 q14 -8 28 0 t28 0 t28 0" />
+        <path class="wave" d="M290 84 q14 -8 28 0 t28 0" />
+      </svg>
+      <p class="sign">Abdelrahman · 景仁 · 2026</p>
+    </div>
   </section>
 
 </div>
@@ -323,8 +379,9 @@
 <script>
 (function () {
   var stops = document.querySelectorAll('.stop');
-  var end = document.getElementById('end');
+  var arrival = document.getElementById('arrival');
   var fill = document.getElementById('fill');
+  var dot = document.getElementById('dot');
   var track = document.querySelector('.track');
 
   if ('IntersectionObserver' in window) {
@@ -335,39 +392,47 @@
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.25, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: 0.2, rootMargin: '0px 0px -6% 0px' });
 
-    stops.forEach(function (s) { io.observe(s); });
-    if (end) io.observe(end);
+    stops.forEach(function (s, i) {
+      s.querySelector('.card').style.transitionDelay = Math.min(i * 40, 160) + 'ms';
+      io.observe(s);
+    });
+    if (arrival) io.observe(arrival);
   } else {
     stops.forEach(function (s) { s.classList.add('on'); });
-    if (end) end.classList.add('on');
+    if (arrival) arrival.classList.add('on');
+  }
+
+  function progress() {
+    if (!track) return 0;
+    var r = track.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var total = r.height + vh * 0.5;
+    var passed = vh * 0.5 - r.top;
+    return Math.min(Math.max(passed / Math.max(total, 1), 0), 1);
   }
 
   function onScroll() {
-    // reveal anything the reader has already passed, including after a jump or refresh
     stops.forEach(function (s) {
-      if (!s.classList.contains('on') && s.getBoundingClientRect().top < window.innerHeight * 0.9) {
+      if (!s.classList.contains('on') && s.getBoundingClientRect().top < window.innerHeight * 0.92) {
         s.classList.add('on');
       }
     });
-    if (end && !end.classList.contains('on') && end.getBoundingClientRect().top < window.innerHeight * 0.9) {
-      end.classList.add('on');
+    if (arrival && !arrival.classList.contains('on') && arrival.getBoundingClientRect().top < window.innerHeight * 0.92) {
+      arrival.classList.add('on');
     }
 
-    if (!track || !fill) return;
-    var rect = track.getBoundingClientRect();
-    var vh = window.innerHeight;
-    var total = rect.height - vh * 0.35;
-    var passed = Math.min(Math.max(vh * 0.35 - rect.top, 0), Math.max(total, 1));
-    fill.style.height = (passed / Math.max(total, 1)) * 100 + '%';
+    var p = progress();
+    if (fill) fill.style.height = (p * 100) + '%';
+    if (dot) dot.style.top = (p * 100) + '%';
   }
 
-  var ticking = false;
+  var tick = false;
   window.addEventListener('scroll', function () {
-    if (!ticking) {
-      window.requestAnimationFrame(function () { onScroll(); ticking = false; });
-      ticking = true;
+    if (!tick) {
+      window.requestAnimationFrame(function () { onScroll(); tick = false; });
+      tick = true;
     }
   }, { passive: true });
   window.addEventListener('resize', onScroll);
