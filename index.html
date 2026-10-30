@@ -345,6 +345,16 @@
   }
 
   function onScroll() {
+    // reveal anything the reader has already passed, including after a jump or refresh
+    stops.forEach(function (s) {
+      if (!s.classList.contains('on') && s.getBoundingClientRect().top < window.innerHeight * 0.9) {
+        s.classList.add('on');
+      }
+    });
+    if (end && !end.classList.contains('on') && end.getBoundingClientRect().top < window.innerHeight * 0.9) {
+      end.classList.add('on');
+    }
+
     if (!track || !fill) return;
     var rect = track.getBoundingClientRect();
     var vh = window.innerHeight;
