@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Long Way Round · Abdelrahman</title>
+<meta name="description" content="A short map of how I got from a Java project I could not start to a chartering desk." />
+<style>
+  :root {
+    --ink: #0c1420;
+    --ink-2: #101b2a;
+    --paper: #f2ede3;
+    --muted: #8d9aa8;
+    --brass: #c9a227;
+    --brass-soft: #8a6f1e;
+    --line: rgba(201, 162, 39, 0.28);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(70rem 40rem at 15% -10%, rgba(201,162,39,0.10), transparent 60%),
+      radial-gradient(50rem 30rem at 110% 20%, rgba(60,110,160,0.14), transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .wrap { position: relative; z-index: 1; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8vh 6vw;
+    max-width: 74rem;
+    margin: 0 auto;
+  }
+  .kicker {
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin: 0 0 1.4rem;
+  }
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    line-height: 1.03;
+    margin: 0 0 1.6rem;
+    letter-spacing: -0.02em;
+  }
+  h1 em { font-style: italic; color: var(--brass); }
+  .lede {
+    max-width: 34rem;
+    color: var(--muted);
+    font-size: 1.02rem;
+  }
+  .scroll-hint {
+    margin-top: 3.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    color: var(--brass-soft);
+    font-size: 0.74rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .scroll-hint span.rail {
+    display: block;
+    width: 3.2rem;
+    height: 1px;
+    background: var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-hint span.rail::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--brass);
+    transform: translateX(-100%);
+    animation: sweep 2.6s ease-in-out infinite;
+  }
+  @keyframes sweep {
+    0% { transform: translateX(-100%); }
+    55%, 100% { transform: translateX(100%); }
+  }
+
+  /* ---------- timeline ---------- */
+  .track {
+    position: relative;
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: 4rem 6vw 8rem;
+  }
+  .spine {
+    position: absolute;
+    left: calc(6vw + 0.55rem);
+    top: 4rem;
+    bottom: 8rem;
+    width: 1px;
+    background: var(--line);
+  }
+  .spine-fill {
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(180deg, var(--brass), rgba(201,162,39,0.25));
+    box-shadow: 0 0 12px rgba(201,162,39,0.45);
+  }
+  @media (min-width: 52rem) {
+    .spine { left: 50%; }
+    .stop { grid-template-columns: 1fr 1fr; }
+  }
+
+  .stop {
+    position: relative;
+    display: grid;
+    gap: 1rem;
+    padding: 0 0 0 3.2rem;
+    margin: 0 0 5.5rem;
+  }
+  @media (min-width: 52rem) {
+    .stop { padding: 0; column-gap: 5rem; }
+    .stop:nth-child(odd) .card { grid-column: 2; text-align: left; }
+    .stop:nth-child(even) .card { grid-column: 1; text-align: right; }
+  }
+
+  .dot {
+    position: absolute;
+    left: 0;
+    top: 0.45rem;
+    width: 0.72rem;
+    height: 0.72rem;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 1px solid var(--brass-soft);
+    transition: background 0.6s ease, box-shadow 0.6s ease, transform 0.6s ease;
+  }
+  @media (min-width: 52rem) {
+    .dot { left: calc(50% - 0.36rem); }
+  }
+  .stop.on .dot {
+    background: var(--brass);
+    box-shadow: 0 0 0 5px rgba(201,162,39,0.14), 0 0 18px rgba(201,162,39,0.55);
+    transform: scale(1.15);
+  }
+
+  .card { opacity: 0; transform: translateY(26px); transition: opacity 0.85s ease, transform 0.85s cubic-bezier(.2,.7,.2,1); }
+  .stop.on .card { opacity: 1; transform: none; }
+  .stop .year {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 0.55rem;
+  }
+  .stop h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    font-size: clamp(1.4rem, 3.2vw, 2.05rem);
+    margin: 0 0 0.6rem;
+    letter-spacing: -0.01em;
+  }
+  .stop p { margin: 0; color: var(--muted); max-width: 30rem; }
+  @media (min-width: 52rem) {
+    .stop:nth-child(even) p { margin-left: auto; }
+  }
+
+  /* ---------- closing ---------- */
+  .end {
+    min-height: 88svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 6rem 6vw;
+    border-top: 1px solid var(--line);
+  }
+  .end blockquote {
+    margin: 0;
+    max-width: 44rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.35rem, 3.4vw, 2.1rem);
+    line-height: 1.45;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+  }
+  .end.on blockquote { opacity: 1; transform: none; }
+  .end blockquote em { color: var(--brass); font-style: italic; }
+  .sign {
+    margin-top: 3rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--brass-soft);
+    opacity: 0;
+    transition: opacity 1.4s ease 0.5s;
+  }
+  .end.on .sign { opacity: 1; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card, .end blockquote, .sign { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .scroll-hint span.rail::after { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <p class="kicker">A short map · 2022 → now</p>
+    <h1>The long way<br><em>round.</em></h1>
+    <p class="lede">I did not plan my way into shipping. I spent a few years trying to become useful, and then a door opened earlier than I expected. This is the order it happened in.</p>
+    <div class="scroll-hint"><span class="rail"></span> Scroll</div>
+  </header>
+
+  <main class="track">
+    <div class="spine"><div class="spine-fill" id="fill"></div></div>
+
+    <article class="stop">
+      <span class="dot"></span>
+      <div class="card">
+        <span class="year">Late 2022</span>
+        <h2>The first prompt</h2>
+        <p>A database system in Java, five of us, and a project we could not start. The chatbot was wrong most of the time and it still got us through.</p>
+      </div>
+    </article>
+
+    <article class="stop">
+      <span class="dot"></span>
+      <div class="card">
+        <span class="year">The choice</span>
+        <h2>Business informatics</h2>
+        <p>I liked programming and I was afraid of being stuck in one field, so I picked a degree that made me study economics and business next to computer science.</p>
+      </div>
+    </article>
+
+    <article class="stop">
+      <span class="dot"></span>
+      <div class="card">
+        <span class="year">The first door</span>
+        <h2>Doha</h2>
+        <p>An internship was my way into the maritime industry. It later brought me to Shanghai, which is where the rest of this map happens.</p>
+      </div>
+    </article>
+
+    <article class="stop">
+      <span class="dot"></span>
+      <div class="card">
+        <span class="year">A year and a half · two countries</span>
+        <h2>Bureau Veritas</h2>
+        <p>Business analytics, market reporting and fleet analysis. What I learned is that shipping runs on documents, on data nobody has cleaned, and on people willing to sign their name to a judgement.</p>
+      </div>
+    </article>
+
+    <article class="stop">
+      <span class="dot"></span>
+      <div class="card">
+        <span class="year">The language</span>
+        <h2>Chinese, in a year and a half</h2>
+        <p>I passed an exam that some students fail after three years of study. It is the asset in this whole map that is hardest to copy.</p>
+      </div>
+    </article>
+
+    <article class="stop">
+      <span class="dot"></span>
+      <div class="card">
+        <span class="year">The thing I built</span>
+        <h2>Orange Chinese</h2>
+        <p>A study app my friends needed because they were juggling five apps for one lesson. No sales yet. Five months of ten hour days taught me the difference between an idea and a product.</p>
+      </div>
+    </article>
+
+    <article class="stop">
+      <span class="dot"></span>
+      <div class="card">
+        <span class="year">Now</span>
+        <h2>Fudan</h2>
+        <p>Master's in International Business at the School of Economics. The credential that opens the first door properly.</p>
+      </div>
+    </article>
+
+    <article class="stop">
+      <span class="dot"></span>
+      <div class="card">
+        <span class="year">Next</span>
+        <h2>The chartering desk</h2>
+        <p>The commercial side, where vessels are fixed and negotiated. A model can price a voyage faster than a junior broker. It cannot sit across the table and hold a number.</p>
+      </div>
+    </article>
+  </main>
+
+  <section class="end" id="end">
+    <blockquote>
+      In all honesty, even though we try our best to think that we are in full control of our lives, reality and destiny will always win. I will try my best with what I have been given, and <em>the outcome is something that is left to the universe to decide.</em>
+    </blockquote>
+    <p class="sign">Abdelrahman · 景仁 · 2026</p>
+  </section>
+
+</div>
+
+<script>
+(function () {
+  var stops = document.querySelectorAll('.stop');
+  var end = document.getElementById('end');
+  var fill = document.getElementById('fill');
+  var track = document.querySelector('.track');
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('on');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.25, rootMargin: '0px 0px -8% 0px' });
+
+    stops.forEach(function (s) { io.observe(s); });
+    if (end) io.observe(end);
+  } else {
+    stops.forEach(function (s) { s.classList.add('on'); });
+    if (end) end.classList.add('on');
+  }
+
+  function onScroll() {
+    if (!track || !fill) return;
+    var rect = track.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var total = rect.height - vh * 0.35;
+    var passed = Math.min(Math.max(vh * 0.35 - rect.top, 0), Math.max(total, 1));
+    fill.style.height = (passed / Math.max(total, 1)) * 100 + '%';
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      window.requestAnimationFrame(function () { onScroll(); ticking = false; });
+      ticking = true;
+    }
+  }, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+</script>
+</body>
+</html>
